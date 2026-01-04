@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clinic Notes - Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f7f9; padding: 40px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        .btn { display: inline-block; padding: 15px 25px; margin: 10px; background: #3498db; color: white; text-decoration: none; border-radius: 8px; font-size: 16px; }
+        .btn:hover { background: #2980b9; }
+        .btn-danger { background: #e74c3c; }
+        .btn-danger:hover { background: #c0392b; }
+        .user { text-align: right; color: #7f8c8d; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="user">
+        {% if user.is_authenticated %}
+        Logged in as <strong>{{ user.get_full_name|default:user.username}}</strong>
+        (<a href="/api-auth/logout/">Logout</a>)
+        {% else %}
+        (<a href="/api-auth/logout/">Logout</a>)
+        {% endif %}
+    </div>
+
+    <h1>Clinic Note System</h1>
+        <p style="text-align:center; color:#7f8c8d">Professional medical record API</p>
+
+    <div style="text-align:center; margin-top:40px;">
+        <a href="/api/patients/" class="btn">Patients (Interactive Table)</a>
+        <a href="/api/visits/" class="btn">Visits</a>
+        <a href="/api/notes/" class="btn">Clinical Notes (SOAP)</a>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+        <a href="/api/patients/?search=" class="btn">Search Patients</a>
+        <a href="/api/notes/?search=" class="btn">Search Notes (e.g. ?search=diabetes)</a>
+    </div>
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/admin/" class="btn">Admin Panel</a>
+        <a href="/api-auth/logout/?next=/" class="btn btn-danger">Logout</a>
+    </div>
+
+</div>
+
+</body>
+</html>
